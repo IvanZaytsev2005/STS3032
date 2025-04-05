@@ -54,20 +54,27 @@ enum STSRegisters
     CURRENT_CURRENT          = 0x45,
 };
 
+enum STSMode{
+    POSITION = 0,
+    VELOCITY = 1,
+    STEP = 3
+};
+
 typedef struct STS3032 {
     uint8_t (*transmit) (uint8_t* data_out, uint8_t Len);
     #ifdef BlockRead
     // first mode - blocking mode, wait for responce
-    uint8_t (*recieve) (uint8_t* data_in, uint8_t Len);
+    uint8_t (*receive) (uint8_t* data_in, uint8_t Len);
     #else
     uint8_t* data_in;
     #endif
 }Sts3032connect_t;
 
-uint8_t PingWrite(uint8_t ID, Sts3032connect_t* sts);
+uint8_t PingWrite(uint8_t ID, uint8_t* Ret, Sts3032connect_t* sts);
 void Write(uint8_t ID, uint8_t command, uint8_t size, uint8_t *param, Sts3032connect_t* sts);
 uint8_t SetPosition(uint8_t ID, uint16_t pos, Sts3032connect_t* sts);
 uint8_t SetMode(uint8_t ID, uint8_t Mode, Sts3032connect_t* sts);
-uint8_t SetVelocite(uint8_t ID, uint16_t Speed, Sts3032connect_t* sts);
+uint8_t SetVelocite(uint8_t ID, int16_t Speed, Sts3032connect_t* sts);
 uint8_t SetAcceleration(uint8_t ID, uint16_t Accel, Sts3032connect_t* sts);
 uint8_t ChecSumm(uint8_t *messag);
+void Action(uint8_t ID, Sts3032connect_t* sts);
