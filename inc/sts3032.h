@@ -72,9 +72,15 @@ typedef struct STS3032 {
 
 uint8_t PingWrite(uint8_t ID, uint8_t* Ret, Sts3032connect_t* sts);
 void Write(uint8_t ID, uint8_t command, uint8_t size, uint8_t *param, Sts3032connect_t* sts);
+void Read(uint8_t ID, uint8_t Addr, uint8_t size, uint8_t* buf, Sts3032connect_t* sts);
+void WriteRegister(uint8_t ID, uint8_t Addr, uint8_t size, int16_t Data, Sts3032connect_t* sts);
+uint16_t ReadRegister(uint8_t ID, uint8_t Addr, uint8_t size, Sts3032connect_t* sts);
 uint8_t SetPosition(uint8_t ID, uint16_t pos, Sts3032connect_t* sts);
 uint8_t SetMode(uint8_t ID, uint8_t Mode, Sts3032connect_t* sts);
 uint8_t SetVelocite(uint8_t ID, int16_t Speed, Sts3032connect_t* sts);
-uint8_t SetAcceleration(uint8_t ID, uint16_t Accel, Sts3032connect_t* sts);
+void SetTorque(uint8_t ID, uint16_t torque, Sts3032connect_t* sts);
+uint8_t SetAcceleration(uint8_t ID, uint8_t Accel, Sts3032connect_t* sts);
 uint8_t ChecSumm(uint8_t *messag);
 void Action(uint8_t ID, Sts3032connect_t* sts);
+uint8_t LockingEprom(uint8_t ID, uint8_t Lock, Sts3032connect_t* sts);
+uint8_t SetID(uint8_t LastID, uint8_t NewID, Sts3032connect_t* sts);
