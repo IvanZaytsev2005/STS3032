@@ -84,3 +84,4 @@ uint8_t ChecSumm(uint8_t *messag);
 void Action(uint8_t ID, Sts3032connect_t* sts);
 uint8_t LockingEprom(uint8_t ID, uint8_t Lock, Sts3032connect_t* sts);
 uint8_t SetID(uint8_t LastID, uint8_t NewID, Sts3032connect_t* sts);
+void Reset(uint8_t ID, Sts3032connect_t* sts);

@@ -142,6 +142,17 @@ void SetTorque(uint8_t ID, uint16_t torque, Sts3032connect_t* sts) {
     WriteRegister(ID, TORQUE_LIMIT, 2, (int16_t)torque, sts);
 }
 
+void Reset(uint8_t ID, Sts3032connect_t* sts) {
+    uint8_t data_out[12];
+    data_out[0] = 0xFF;
+    data_out[1] = 0xFF;
+    data_out[2] = ID;
+    data_out[3] = 2;
+    data_out[4] = 0x0A;
+    ChecSumm(data_out);
+    sts->transmit(data_out,6);
+}
+
 uint8_t ChecSumm(uint8_t *messag)
 {
     // uint8_t T;
